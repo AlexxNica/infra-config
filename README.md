@@ -171,12 +171,8 @@ the [LUCI Scheduler](https://luci-scheduler.appspot.com/) web interface.
 To test the commit queue, create a new commit for your project in Gerrit. The
 contents of the commit don't matter, since you will only be doing a dry run.
 
-If you have the right permissions in Gerrit, you should see an option labeled
-"Commit-Queue" when you click on the "Reply" button, like so:
-
-![Gerrit screenshot](gerrit-cq.png)
-
-Select the "+1" option as shown above, which signals a dry run, and click
-"Send". Very soon after that you should see a comment from the CQ bot, with a
-link to its progress. Check to see if it completes all the builds you configured
-in the above steps.
+If you have the right permissions in Gerrit and you are using
+[PolyGerrit](https://fuchsia-review.googlesource.com/?polygerrit=1),
+you should see a button in the top right that says "CQ Dry Run". Click it, and
+soon you should see a comment from the CQ bot, with a link to its progress.
+Check to see if it completes all the builds you configured in the above steps.
