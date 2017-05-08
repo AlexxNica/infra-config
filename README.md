@@ -93,6 +93,7 @@ builder_defaults {
     repository: "https://fuchsia.googlesource.com/infra/recipes"
     properties: "remote:https://fuchsia.googlesource.com/manifest"
   }
+}
 ```
 
 There are more machine dimensions here, including the machine pool, since the
