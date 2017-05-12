@@ -29,7 +29,7 @@ builders {
   category: "Fuchsia"
   name: "fuchsia-x86_64-linux-debug"
   mixins: "fuchsia"
-  dimensions: "os:Linux"
+  dimensions: "os:Ubuntu"
   recipe {
     properties: "target:x86-64"
     properties: "build_type:debug"
