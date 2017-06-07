@@ -9,6 +9,20 @@ You can configure LUCI to:
 * Run a **commit queue** to block commits in Gerrit that would break your build
   or any builds that depend on your code.
 
+## Getting the code
+
+The configuration repos for Fuchsia continuous integration are included in the
+`infra` Jiri manifest. To get the code:
+
+```
+jiri import infra https://fuchsia.googlesource.com/manifest
+jiri update
+```
+
+Your top-level Fuchsia directory will now have an `infra` directory, containing
+the `config` and `recipes` repos, each of which is described in more detail
+below.
+
 ## Buildbucket configuration
 
 [Buildbucket](https://chromium.googlesource.com/infra/infra/+/master/appengine/cr-buildbucket/README.md)
@@ -125,20 +139,23 @@ interval".
 
 ## Commit queue configuration
 
-The [repositories](repositories) directory of this repo has a directory for
-every Fuchsia repo that has a commit queue. If you want to add a commit queue
-for your repo, create a directory here, copy the `refs.cfg` and `cq.cfg` files
-from an existing directory, and make the necessary changes.
+Setting up a commit queue for a repo requires three steps:
 
-### `refs.cfg`
+### 1. Create the configuration directory for your repository
+
+Add a new directory to the [repositories](repositories) directory of the
+`infra/config` repo. As the name implies `repositories` contains a subdirectory
+for every repo that has CQ enabled. Your new directory should contain `refs.cfg`
+and `cq.cfg`, described in detail below. You can copy them from an existing
+directory to get started.
+
+### 1a. Create `refs.cfg`
 
 This is a magical workaround for legacy issues. It's basically the file that
 bootstraps the commit queue configuration. Just make sure that `config_path`
-points to your new directory. You also need to make sure this file is picked up
-in the global LUCI configuration, which is stored in a Google-internal repo.
-Ask someone from the Fuchsia infrastructure team for help with this step.
+points to your new directory.
 
-### `cq.cfg`
+### 1b. Create `cq.cfg`
 
 This the configuration file for the Chromium Commit Queue, which is a thing that
 watches Gerrit for CLs it can build, test, and commit.
@@ -161,6 +178,32 @@ Fuchsia build.
 
 The `gerrit_cq_ability` section defines permissions for who can use the CQ, and
 it's the same for all Fuchsia repos.
+
+### 2. Get added to Chromium infrastructure configuration
+
+We use the Chromium CQ bot, which is a service provided by Chromium
+infrastructure. There are a couple of Google-internal repos that require changes
+for every new Fuchsia repo with CQ.
+
+Open a ticket in JIRA and assign to someone on the Fuchsia instructure team,
+saying that you want to enable the Chromium CQ bot for your repo.
+
+### 3. Enable CQ features in Gerrit
+
+Once everything else is done, you'll need a Fuchsia Gerrit administrator to
+turn on all the appropriate CQ buttons in Gerrit. Open a JIRA ticket and assign
+to someone on the Fuchsia infrastructure team asking to enable CQ for your repo
+in Gerrit (or just add a comment on your existing ticket from step 2).
+
+If you are a Gerrit administrator, you can do it yourself. Go to the project
+administration page for the repo you want to change, and open the "Access" tab
+at the top (you'll need to temporarily disable PolyGerrit to get to this tab).
+Here's an example link to the right page, for the `test_runner` repo:
+https://fuchsia-review.googlesource.com/?polygerrit=0#/admin/projects/test_runner,access
+
+Click the "Edit" button and change the text in the "Rights Inherit From" field
+from "All Projects" to "gerrit/commit-queue-projects". Then click
+"Save Changes". Now the CQ UI elements should show up on any CLs on the repo.
 
 ## Testing your configuration
 
