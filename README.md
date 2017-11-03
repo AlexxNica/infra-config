@@ -181,19 +181,20 @@ it's the same for all Fuchsia repos.
 
 ### 2. Get added to Chromium infrastructure configuration
 
-We use the Chromium CQ bot, which is a service provided by Chromium
-infrastructure. There are a couple of Google-internal repos that require changes
-for every new Fuchsia repo with CQ.
+To do this, open a JIRA ticket in the INTK project, asking to enable the
+Chromium CQ bot for your repo.
 
-Open a ticket in JIRA and assign to someone on the Fuchsia instructure team,
-saying that you want to enable the Chromium CQ bot for your repo.
+We use the Chromium CQ bot, which is a service provided by Chromium
+infrastructure. There are a couple of Google-internal repos that require
+changes for every new Fuchsia repo with CQ, which the Infra team can do for
+you.
 
 ### 3. Enable CQ features in Gerrit
 
 Once everything else is done, you'll need a Fuchsia Gerrit administrator to
-turn on all the appropriate CQ buttons in Gerrit. Open a JIRA ticket and assign
-to someone on the Fuchsia infrastructure team asking to enable CQ for your repo
-in Gerrit (or just add a comment on your existing ticket from step 2).
+turn on all the appropriate CQ buttons in Gerrit. Open a JIRA ticket in the
+INTK project, asking to enable CQ for your repo in Gerrit (or just add a
+comment on your existing ticket from step 2).
 
 If you are a Gerrit administrator, you can do it yourself. Go to the project
 administration page for the repo you want to change, and open the "Access" tab
