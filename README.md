@@ -203,8 +203,8 @@ Here's an example link to the right page, for the `test_runner` repo:
 https://fuchsia-review.googlesource.com/?polygerrit=0#/admin/projects/test_runner,access
 
 Click the "Edit" button and change the text in the "Rights Inherit From" field
-from "All Projects" to "gerrit/commit-queue-projects". Then click
-"Save Changes". Now the CQ UI elements should show up on any CLs on the repo.
+from "All-Projects" to "Commit-Queue". Then click "Save Changes". Now the CQ UI
+elements should show up on any CLs on the repo.
 
 ## Testing your configuration
 
