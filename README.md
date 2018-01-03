@@ -160,9 +160,9 @@ points to your new directory.
 This the configuration file for the Chromium Commit Queue, which is a thing that
 watches Gerrit for CLs it can build, test, and commit.
 
-We always use the same `cq_status_url` for Fuchsia, and the `git_repo_url` is
-specific to the repo. `cq_name` is a unique identifier for the project's CQ,
-and it can usually just be the same as the all-lowercase name of the repo.
+`cq_name` is a unique identifier for the project's CQ, and it can usually just
+be the same as the all-lowercase name of the repo. `git_repo_url` is used to
+specify the repository.
 
 A LUCI commit queue configuration consists of one or more **verifiers**, which
 are steps that must pass before committing is allowed. The basic configuration
